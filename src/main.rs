@@ -38,10 +38,13 @@ fn main() -> ! {
     );
 
     let mut led_pin = pins.led.into_push_pull_output();
+    let mut gpio1 = pins.gpio1.into_push_pull_output();
 
     loop {
+        gpio1.set_low().unwrap();
         led_pin.set_high().unwrap();
         delay.delay_ms(500);
+        gpio1.set_high().unwrap();
         led_pin.set_low().unwrap();
         delay.delay_ms(500);
     }
